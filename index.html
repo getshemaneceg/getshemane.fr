@@ -34,6 +34,7 @@
         <li><a href="#home" class="hover:text-red-400">Accueil</a></li>
         <li><a href="#about" class="hover:text-red-400">À propos</a></li>
         <li><a href="#events" class="hover:text-red-400">Événements</a></li>
+        <li><a href="#info" class="hover:text-red-400">Infos</a></li>
         <li><a href="#contact" class="hover:text-red-400">Contact</a></li>
       </ul>
     </nav>
@@ -58,26 +59,73 @@
   </section>
 
   <!-- ABOUT -->
-  <section id="about" class="py-16 px-6 text-center bg-black/20 backdrop-blur-md">
+  <section id="about" class="py-16 px-6 text-center bg-black/30 backdrop-blur-md">
     <h3 class="text-3xl font-bold text-white mb-4">À propos</h3>
     <p class="max-w-3xl mx-auto text-gray-200 leading-relaxed">
       L'Église Getshemane est une communauté évangélique passionnée par l’amour de Dieu et le service des autres.
+      Notre mission : apporter la lumière, la paix et la foi dans chaque foyer.
     </p>
+  </section>
+
+  <!-- EVENTS -->
+  <section id="events" class="py-16 px-6 bg-black/20 backdrop-blur-md text-center">
+    <h3 class="text-3xl font-bold text-white mb-8">Nos Événements</h3>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <div class="bg-white/10 p-6 rounded-xl shadow-lg hover:bg-white/20 transition">
+        <h4 class="font-semibold text-xl mb-2 text-red-300">Culte du Dimanche</h4>
+        <p class="text-gray-100">Chaque dimanche à 10h30 — Louange, prière et partage de la Parole.</p>
+      </div>
+      <div class="bg-white/10 p-6 rounded-xl shadow-lg hover:bg-white/20 transition">
+        <h4 class="font-semibold text-xl mb-2 text-red-300">Soirée Prière</h4>
+        <p class="text-gray-100">Tous les vendredis à 19h — Un moment d'intercession et de communion.</p>
+      </div>
+      <div class="bg-white/10 p-6 rounded-xl shadow-lg hover:bg-white/20 transition">
+        <h4 class="font-semibold text-xl mb-2 text-red-300">Rencontre Jeunesse</h4>
+        <p class="text-gray-100">Chaque samedi à 16h — Louange, jeux et enseignement pour les jeunes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO -->
+  <section id="info" class="py-16 px-6 text-center bg-black/40">
+    <h3 class="text-3xl font-bold text-white mb-4">Informations</h3>
+    <div class="max-w-4xl mx-auto grid md:grid-cols-3 gap-6 text-gray-100">
+      <div class="bg-white/10 p-6 rounded-lg shadow-md">
+        <h4 class="font-semibold text-red-400 text-lg mb-2">📍 Adresse</h4>
+        <p>25 Rue de la Foi<br>75000 Paris</p>
+      </div>
+      <div class="bg-white/10 p-6 rounded-lg shadow-md">
+        <h4 class="font-semibold text-red-400 text-lg mb-2">⏰ Horaires</h4>
+        <p>Dimanche : 10h30 - 12h30<br>Vendredi : 19h00 - 21h00</p>
+      </div>
+      <div class="bg-white/10 p-6 rounded-lg shadow-md">
+        <h4 class="font-semibold text-red-400 text-lg mb-2">🌐 Réseaux</h4>
+        <p>
+          <a href="#" class="hover:text-red-300">Facebook</a><br>
+          <a href="#" class="hover:text-red-300">Instagram</a><br>
+          <a href="#" class="hover:text-red-300">YouTube</a>
+        </p>
+      </div>
+    </div>
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="py-16 px-6 text-center bg-black/40">
+  <section id="contact" class="py-16 px-6 text-center bg-black/50 backdrop-blur-md">
     <h3 class="text-3xl font-bold text-white mb-4">Contact</h3>
-    <p class="text-gray-200 mb-4">
-      📍 Adresse : 25 Rue de la Foi, 75000 Paris
-    </p>
     <p class="text-gray-200 mb-6">
-      📧 Email : <a href="mailto:edojuniorsantos2012eds@gmail.com" class="text-red-400">edojuniorsantos2012eds@gmail.com</a>
+      Tu peux nous écrire directement par mail ou via le formulaire ci-dessous :
     </p>
+
+    <form onsubmit="alert('Message envoyé !')" class="max-w-md mx-auto space-y-4">
+      <input type="text" placeholder="Ton nom" class="w-full p-3 rounded-md bg-white/10 border border-white/20 text-white placeholder-gray-300" required>
+      <input type="email" placeholder="Ton email" class="w-full p-3 rounded-md bg-white/10 border border-white/20 text-white placeholder-gray-300" required>
+      <textarea placeholder="Ton message..." rows="4" class="w-full p-3 rounded-md bg-white/10 border border-white/20 text-white placeholder-gray-300" required></textarea>
+      <button type="submit" class="w-full py-3 rounded-md bg-red-600 text-white font-semibold hover:bg-red-500 transition">Envoyer</button>
+    </form>
   </section>
 
   <!-- FOOTER -->
-  <footer class="border-t border-white/20 bg-black/40">
+  <footer class="border-t border-white/20 bg-black/60">
     <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
       <p class="text-sm text-gray-200">
         © 2025 Église Getshemane — Tous droits réservés
