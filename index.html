@@ -1,223 +1,93 @@
-import React from "react";
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Église Getshemane</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .animate-gradient {
+      background-size: 400% 400%;
+      animation: gradient 10s ease infinite;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-600 via-red-500 to-blue-700 animate-gradient text-gray-100">
 
-// Getshemane Church - Single-file React component (Tailwind CSS)
-// Usage: paste into a React app (Create React App / Vite) and ensure Tailwind is configured.
-// Change SITE_EMAIL below to your contact email.
-
-const SITE_EMAIL = "edojuniorsantos2012eds@gmail.com"; // contact email (modifiable)
-
-export default function GetshemaneSite() {
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 text-gray-900">
-      {/* NAV */}
-      <header className="fixed w-full z-30 bg-white/80 backdrop-blur-md shadow-sm">
-        <nav className="max-w-6xl mx-auto flex items-center justify-between p-4">
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-lg bg-gradient-to-tr from-indigo-600 to-pink-500 flex items-center justify-center text-white font-bold text-xl">
-              G
-n            </div>
-            <div>
-              <h1 className="text-lg font-extrabold">Getshemane</h1>
-              <p className="text-xs text-gray-600">Église Évangélique</p>
-            </div>
-          </div>
-
-          <ul className="hidden md:flex items-center gap-6 text-sm font-medium">
-            <li><a href="#home" className="hover:text-indigo-600">Accueil</a></li>
-            <li><a href="#about" className="hover:text-indigo-600">À propos</a></li>
-            <li><a href="#team" className="hover:text-indigo-600">Équipe</a></li>
-            <li><a href="#events" className="hover:text-indigo-600">Événements</a></li>
-            <li><a href="#gallery" className="hover:text-indigo-600">Galerie</a></li>
-            <li><a href="#contact" className="hover:text-indigo-600">Contact</a></li>
-          </ul>
-
-          <div className="hidden md:block">
-            <a href="#donate" className="inline-block px-4 py-2 rounded-full bg-indigo-600 text-white text-sm font-semibold">Faire un don</a>
-          </div>
-
-          {/* Mobile hamburger (simple) */}
-          <div className="md:hidden">
-            <a href="#menu" className="text-indigo-600 font-semibold">Menu</a>
-          </div>
-        </nav>
-      </header>
-
-      {/* HERO */}
-      <section id="home" className="pt-28 pb-16">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center px-6">
-          <div>
-            <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">Bienvenue à <span className="text-indigo-600">Getshemane</span></h2>
-            <p className="mt-4 text-lg text-gray-700">Un lieu de rencontre, de prière et de transformation — rejoins une communauté vivante où Dieu change des vies.</p>
-
-            <div className="mt-6 flex gap-3">
-              <a href="#events" className="px-5 py-3 rounded-lg bg-indigo-600 text-white font-semibold">Horaires & Événements</a>
-              <a href="#contact" className="px-5 py-3 rounded-lg border border-gray-200">Nous contacter</a>
-            </div>
-
-            <div className="mt-8 grid grid-cols-2 gap-4">
-              <div className="p-4 rounded-lg bg-white shadow-sm">
-                <h4 className="font-semibold">Culte</h4>
-                <p className="text-sm text-gray-600 mt-1">Dimanche 10h30</p>
-              </div>
-              <div className="p-4 rounded-lg bg-white shadow-sm">
-                <h4 className="font-semibold">Jeunesse</h4>
-                <p className="text-sm text-gray-600 mt-1">Vendredi 19h - 21h</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="relative">
-            <div className="aspect-[4/3] w-full rounded-2xl overflow-hidden shadow-xl">
-              <img src="https://images.unsplash.com/photo-1515165562835-c9f6a1a6a7ef?auto=format&fit=crop&w=1200&q=60" alt="Église" className="w-full h-full object-cover" />
-            </div>
-            <div className="absolute left-6 bottom-6 bg-white/90 p-4 rounded-lg shadow-md">
-              <p className="text-xs">Prochaine rencontre:</p>
-              <p className="font-semibold">Soirée prière — Vendredi 18 octobre 2025</p>
-            </div>
-          </div>
+  <!-- NAV -->
+  <header class="fixed w-full z-30 bg-white/10 backdrop-blur-md shadow-md">
+    <nav class="max-w-6xl mx-auto flex items-center justify-between p-4">
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-lg bg-gradient-to-tr from-blue-500 to-red-500 flex items-center justify-center text-white font-bold text-xl">G</div>
+        <div>
+          <h1 class="text-lg font-extrabold text-white">Getshemane</h1>
+          <p class="text-xs text-gray-200">Église Évangélique</p>
         </div>
-      </section>
+      </div>
 
-      {/* ABOUT */}
-      <section id="about" className="py-16 bg-gradient-to-b from-gray-50 to-white">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h3 className="text-3xl font-bold">Notre vision</h3>
-          <p className="mt-4 text-gray-700">Être une communauté qui aime Dieu, sert les gens et partage l'Evangile — avec compassion, authenticité et puissance.</p>
+      <ul class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-100">
+        <li><a href="#home" class="hover:text-red-400">Accueil</a></li>
+        <li><a href="#about" class="hover:text-red-400">À propos</a></li>
+        <li><a href="#events" class="hover:text-red-400">Événements</a></li>
+        <li><a href="#contact" class="hover:text-red-400">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-6 bg-white rounded-lg shadow-sm">
-              <h4 className="font-semibold">Adoration</h4>
-              <p className="text-sm text-gray-600 mt-2">Des cultes vivants et centrés sur Christ.</p>
-            </div>
-            <div className="p-6 bg-white rounded-lg shadow-sm">
-              <h4 className="font-semibold">Communion</h4>
-              <p className="text-sm text-gray-600 mt-2">Communauté authentique et soin mutuel.</p>
-            </div>
-            <div className="p-6 bg-white rounded-lg shadow-sm">
-              <h4 className="font-semibold">Mission</h4>
-              <p className="text-sm text-gray-600 mt-2">Servir la ville et partager l'espérance.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* TEAM */}
-      <section id="team" className="py-16">
-        <div className="max-w-6xl mx-auto px-6">
-          <h3 className="text-2xl font-bold">Équipe pastorale</h3>
-          <p className="text-gray-600 mt-2">Des serviteurs passionnés à ton écoute.</p>
-
-          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              { name: 'Pasteur Jean-Marc', role: 'Pasteur principal', img: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=60' },
-              { name: 'Sœur Marie', role: 'Responsable jeunesse', img: 'https://images.unsplash.com/photo-1545996124-6f48f6f3c5c6?auto=format&fit=crop&w=800&q=60' },
-              { name: 'Frère Paul', role: 'Worship leader', img: 'https://images.unsplash.com/photo-1544006659-f0b21884ce1d?auto=format&fit=crop&w=800&q=60' },
-              { name: 'Sœur Ana', role: 'Service social', img: 'https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?auto=format&fit=crop&w=800&q=60' }
-            ].map((p) => (
-              <div key={p.name} className="p-4 bg-white rounded-lg shadow-sm text-center">
-                <img src={p.img} alt={p.name} className="mx-auto h-28 w-28 object-cover rounded-full" />
-                <h4 className="mt-3 font-semibold">{p.name}</h4>
-                <p className="text-sm text-gray-600">{p.role}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* EVENTS */}
-      <section id="events" className="py-16 bg-gradient-to-b from-white to-gray-50">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex items-center justify-between">
-            <h3 className="text-2xl font-bold">Événements & Cultes</h3>
-            <a href="#contact" className="text-indigo-600 font-medium">Proposer un event</a>
-          </div>
-
-          <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <EventCard title="Culte du dimanche" date="Dimanche 10:30" desc="Louange, prédication et communion."/>
-            <EventCard title="Soirée prière" date="Vendredi 19:00" desc="Temps de prière et intercession."/>
-            <EventCard title="Atelier jeunes" date="Samedi 16:00" desc="Jeux, partage et enseignement."/>
-          </div>
-        </div>
-      </section>
-
-      {/* GALLERY */}
-      <section id="gallery" className="py-16">
-        <div className="max-w-6xl mx-auto px-6">
-          <h3 className="text-2xl font-bold">Galerie</h3>
-          <p className="text-gray-600 mt-2">Quelques photos de nos rencontres.</p>
-
-          <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
-            {Array.from({length:8}).map((_,i) => (
-              <div key={i} className="rounded-lg overflow-hidden shadow-sm">
-                <img src={`https://images.unsplash.com/photo-1509099836639-18ba0dcd7d2b?auto=format&fit=crop&w=800&q=60&sat=10&crop=faces&ixlib=rb-4.0.3&s=${i}`} alt={`gallery-${i}`} className="w-full h-40 object-cover" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CONTACT + DONATE */}
-      <section id="contact" className="py-16 bg-gradient-to-b from-gray-50 to-white">
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-2xl font-bold">Contact</h3>
-            <p className="text-gray-600 mt-2">Écris-nous — nous serons ravis de te répondre.</p>
-
-            <div className="mt-6 space-y-4">
-              <div className="p-4 bg-white rounded-lg shadow-sm">
-                <p className="text-sm">Email: <a className="text-indigo-600 font-medium" href={`mailto:${SITE_EMAIL}`}>{SITE_EMAIL}</a></p>
-                <p className="text-sm mt-2">Adresse: 123 Rue de la Foi — Ville (modifier)</p>
-                <p className="text-sm mt-2">Téléphone: +33 6 12 34 56 78</p>
-              </div>
-
-              <form className="p-4 bg-white rounded-lg shadow-sm space-y-3" onSubmit={(e)=>{e.preventDefault(); alert('Formulaire simulé — connecter un backend pour envoyer le message.')}}>
-                <input className="w-full border border-gray-200 rounded-md p-2" placeholder="Ton nom" required />
-                <input className="w-full border border-gray-200 rounded-md p-2" placeholder="Ton email" type="email" required />
-                <textarea className="w-full border border-gray-200 rounded-md p-2" placeholder="Message" rows={4} required />
-                <div className="flex gap-3">
-                  <button type="submit" className="px-4 py-2 rounded-lg bg-indigo-600 text-white font-semibold">Envoyer</button>
-                  <a id="donate" href="#" className="px-4 py-2 rounded-lg border border-indigo-600 text-indigo-600 font-semibold">Faire un don</a>
-                </div>
-              </form>
-            </div>
-          </div>
-
-          <div>
-            <h3 className="text-2xl font-bold">Où nous trouver</h3>
-            <p className="text-gray-600 mt-2">Carte et horaires.</p>
-
-            <div className="mt-6 rounded-lg overflow-hidden shadow-sm bg-white">
-              {/* Placeholder map image — replace with embedded Google Map iframe when ready */}
-              <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231?auto=format&fit=crop&w=1200&q=60" alt="map placeholder" className="w-full h-64 object-cover" />
-              <div className="p-4">
-                <p className="text-sm">Horaires: Lun — Ven: 18:00 (Prière), Dim: 10:30 (Culte)</p>
-                <p className="text-sm mt-2">Besoin d'aide pour intégrer la carte interactive ou un système de dons ? Je m'en charge.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FOOTER */}
-      <footer className="border-t bg-white/60 border-gray-100">
-        <div className="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-gray-600">© {new Date().getFullYear()} Église Getshemane — Tous droits réservés</p>
-          <div className="flex items-center gap-4">
-            <a href="#">Mentions légales</a>
-            <a href="#">Politique de confidentialité</a>
-          </div>
-        </div>
-      </footer>
+  <!-- HERO -->
+  <section id="home" class="pt-28 pb-20 text-center px-6">
+    <h2 class="text-5xl font-extrabold text-white drop-shadow-lg">
+      Bienvenue à Getshemane
+    </h2>
+    <p class="mt-4 text-lg max-w-2xl mx-auto text-gray-100">
+      Un lieu de rencontre, de prière et de transformation — rejoins une communauté vivante où Dieu change des vies.
+    </p>
+    <div class="mt-8 flex justify-center gap-4">
+      <a href="#events" class="px-5 py-3 rounded-lg bg-red-600 text-white font-semibold hover:bg-red-500 transition">
+        Horaires & Événements
+      </a>
+      <a href="#contact" class="px-5 py-3 rounded-lg border border-white text-white hover:bg-white hover:text-blue-700 transition">
+        Nous contacter
+      </a>
     </div>
-  );
-}
+  </section>
 
-function EventCard({title, date, desc}){
-  return (
-    <div className="p-4 bg-white rounded-lg shadow-sm">
-      <h4 className="font-semibold">{title}</h4>
-      <p className="text-xs text-gray-500 mt-1">{date}</p>
-      <p className="text-sm text-gray-600 mt-2">{desc}</p>
+  <!-- ABOUT -->
+  <section id="about" class="py-16 px-6 text-center bg-black/20 backdrop-blur-md">
+    <h3 class="text-3xl font-bold text-white mb-4">À propos</h3>
+    <p class="max-w-3xl mx-auto text-gray-200 leading-relaxed">
+      L'Église Getshemane est une communauté évangélique passionnée par l’amour de Dieu et le service des autres.
+    </p>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-16 px-6 text-center bg-black/40">
+    <h3 class="text-3xl font-bold text-white mb-4">Contact</h3>
+    <p class="text-gray-200 mb-4">
+      📍 Adresse : 25 Rue de la Foi, 75000 Paris
+    </p>
+    <p class="text-gray-200 mb-6">
+      📧 Email : <a href="mailto:edojuniorsantos2012eds@gmail.com" class="text-red-400">edojuniorsantos2012eds@gmail.com</a>
+    </p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/20 bg-black/40">
+    <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-sm text-gray-200">
+        © 2025 Église Getshemane — Tous droits réservés
+      </p>
+      <div class="flex items-center gap-4 text-gray-200">
+        <a href="#">Mentions légales</a>
+        <a href="#">Politique de confidentialité</a>
+      </div>
     </div>
-  );
-}
+  </footer>
+
+</body>
+</html>
