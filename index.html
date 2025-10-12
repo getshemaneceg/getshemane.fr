@@ -1,17 +1,52 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const SITE_EMAIL = "edojuniorsantos2012eds@gmail.com";
 
-export default function GetshemaneSite() {
+// Particule simple pour le Hero
+function Particle({ style }) {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-500 via-red-500 to-white text-gray-900">
+    <div
+      className="absolute rounded-full bg-white/50 blur-xl animate-float"
+      style={{ width: 8, height: 8, ...style }}
+    />
+  );
+}
+
+export default function GetshemaneSite() {
+  const [particles, setParticles] = useState([]);
+
+  useEffect(() => {
+    const arr = Array.from({ length: 30 }).map(() => ({
+      top: Math.random() * 100 + "%",
+      left: Math.random() * 100 + "%",
+      size: Math.random() * 6 + 4,
+      delay: Math.random() * 5,
+    }));
+    setParticles(arr);
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-blue-500 via-red-500 to-white text-gray-900 relative overflow-hidden">
+      
+      {/* Particules Hero */}
+      {particles.map((p, i) => (
+        <Particle
+          key={i}
+          style={{
+            top: p.top,
+            left: p.left,
+            width: p.size,
+            height: p.size,
+            animationDelay: `${p.delay}s`,
+          }}
+        />
+      ))}
+
       {/* NAV */}
       <header className="fixed w-full z-30 bg-white/80 backdrop-blur-md shadow-sm">
         <nav className="max-w-6xl mx-auto flex items-center justify-between p-4">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-lg bg-gradient-to-tr from-blue-600 to-red-500 flex items-center justify-center text-white font-bold text-xl">
-              G
-            </div>
+            <div className="w-12 h-12 rounded-lg bg-gradient-to-tr from-blue-600 to-red-500 flex items-center justify-center text-white font-bold text-xl">G</div>
             <div>
               <h1 className="text-lg font-extrabold">Getshemane</h1>
               <p className="text-xs text-gray-600">Église Évangélique</p>
@@ -19,22 +54,22 @@ export default function GetshemaneSite() {
           </div>
 
           <ul className="hidden md:flex items-center gap-6 text-sm font-medium">
-            <li><a href="#home" className="hover:text-blue-600">Accueil</a></li>
-            <li><a href="#about" className="hover:text-blue-600">À propos</a></li>
-            <li><a href="#team" className="hover:text-blue-600">Équipe</a></li>
-            <li><a href="#events" className="hover:text-blue-600">Événements</a></li>
-            <li><a href="#gallery" className="hover:text-blue-600">Galerie</a></li>
-            <li><a href="#contact" className="hover:text-blue-600">Contact</a></li>
-            <li><a href="#donate" className="hover:text-blue-600">Dons</a></li>
+            <li><a href="#home" className="hover:text-blue-600 transition">Accueil</a></li>
+            <li><a href="#about" className="hover:text-blue-600 transition">À propos</a></li>
+            <li><a href="#team" className="hover:text-blue-600 transition">Équipe</a></li>
+            <li><a href="#events" className="hover:text-blue-600 transition">Événements</a></li>
+            <li><a href="#gallery" className="hover:text-blue-600 transition">Galerie</a></li>
+            <li><a href="#contact" className="hover:text-blue-600 transition">Contact</a></li>
+            <li><a href="#donate" className="hover:text-blue-600 transition">Dons</a></li>
           </ul>
         </nav>
       </header>
 
       {/* HERO */}
-      <section id="home" className="pt-28 pb-16 relative">
+      <section id="home" className="pt-28 pb-16 relative z-10">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center px-6">
-          <div>
-            <h2 className="text-4xl md:text-5xl font-extrabold leading-tight text-white">Bienvenue à <span className="text-yellow-300">Getshemane</span></h2>
+          <div className="text-white">
+            <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">Bienvenue à <span className="text-yellow-300">Getshemane</span></h2>
             <p className="mt-4 text-lg text-white/90">Un lieu de rencontre, de prière et de transformation — rejoins une communauté vivante où Dieu change des vies.</p>
 
             <div className="mt-6 flex gap-3">
@@ -44,7 +79,7 @@ export default function GetshemaneSite() {
           </div>
 
           <div className="relative">
-            <div className="aspect-[4/3] w-full rounded-2xl overflow-hidden shadow-xl">
+            <div className="aspect-[4/3] w-full rounded-2xl overflow-hidden shadow-xl transform hover:scale-105 transition">
               <img src="https://images.unsplash.com/photo-1515165562835-c9f6a1a6a7ef?auto=format&fit=crop&w=1200&q=60" alt="Église" className="w-full h-full object-cover" />
             </div>
           </div>
@@ -54,8 +89,8 @@ export default function GetshemaneSite() {
       {/* ABOUT */}
       <section id="about" className="py-16 bg-white/80">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h3 className="text-3xl font-bold">Notre vision</h3>
-          <p className="mt-4 text-gray-700">Être une communauté qui aime Dieu, sert les gens et partage l'Evangile — avec compassion, authenticité et puissance.</p>
+          <h3 className="text-3xl font-bold mb-4">Notre vision</h3>
+          <p className="text-gray-700">Être une communauté qui aime Dieu, sert les gens et partage l'Evangile — avec compassion, authenticité et puissance.</p>
         </div>
       </section>
 
@@ -64,13 +99,13 @@ export default function GetshemaneSite() {
         <div className="max-w-6xl mx-auto px-6 text-center">
           <h3 className="text-2xl font-bold mb-6">Équipe pastorale</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            {[
+            {[ 
               { name: 'Pasteur Jean-Marc', role: 'Pasteur principal', img: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=60' },
               { name: 'Sœur Marie', role: 'Responsable jeunesse', img: 'https://images.unsplash.com/photo-1545996124-6f48f6f3c5c6?auto=format&fit=crop&w=800&q=60' },
               { name: 'Frère Paul', role: 'Worship leader', img: 'https://images.unsplash.com/photo-1544006659-f0b21884ce1d?auto=format&fit=crop&w=800&q=60' },
               { name: 'Sœur Ana', role: 'Service social', img: 'https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?auto=format&fit=crop&w=800&q=60' }
             ].map(p => (
-              <div key={p.name} className="p-4 bg-white rounded-lg shadow-sm text-center">
+              <div key={p.name} className="p-4 bg-white rounded-lg shadow-sm text-center hover:shadow-xl transition">
                 <img src={p.img} alt={p.name} className="mx-auto h-28 w-28 object-cover rounded-full" />
                 <h4 className="mt-3 font-semibold">{p.name}</h4>
                 <p className="text-sm text-gray-600">{p.role}</p>
@@ -115,25 +150,4 @@ export default function GetshemaneSite() {
 
       {/* DONATE */}
       <section id="donate" className="py-16 bg-gradient-to-r from-blue-500 via-red-500 to-blue-400 text-white text-center">
-        <h3 className="text-3xl font-bold mb-4">Faire un don</h3>
-        <p className="mb-6">Soutenez la mission de notre église et aidez à transformer des vies.</p>
-        <a href="#" className="px-6 py-3 rounded-lg bg-yellow-400 text-blue-900 font-semibold hover:bg-yellow-500 transition">Faire un don maintenant</a>
-      </section>
-
-      {/* FOOTER */}
-      <footer className="border-t bg-white/60 border-gray-100 text-center py-6">
-        <p className="text-sm text-gray-600">© {new Date().getFullYear()} Église Getshemane — Tous droits réservés</p>
-      </footer>
-    </div>
-  );
-}
-
-function EventCard({title, date, desc}){
-  return (
-    <div className="p-4 bg-white rounded-lg shadow-sm">
-      <h4 className="font-semibold">{title}</h4>
-      <p className="text-xs text-gray-500 mt-1">{date}</p>
-      <p className="text-sm text-gray-600 mt-2">{desc}</p>
-    </div>
-  );
-}
+        <h3 className="text
