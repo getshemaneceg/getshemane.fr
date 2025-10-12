@@ -34,8 +34,7 @@
         <li><a href="#home" class="hover:text-red-400">Accueil</a></li>
         <li><a href="#about" class="hover:text-red-400">À propos</a></li>
         <li><a href="#events" class="hover:text-red-400">Événements</a></li>
-        <li><a href="#testimonials" class="hover:text-red-400">Témoignages</a></li>
-        <li><a href="#agenda" class="hover:text-red-400">Agenda</a></li>
+        <li><a href="#info" class="hover:text-red-400">Infos</a></li>
         <li><a href="#contact" class="hover:text-red-400">Contact</a></li>
       </ul>
     </nav>
@@ -87,33 +86,26 @@
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
-  <section id="testimonials" class="py-16 px-6 bg-black/40 text-center">
-    <h3 class="text-3xl font-bold text-white mb-6">Témoignages</h3>
-    <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-      <div class="bg-white/10 p-6 rounded-xl shadow-lg">
-        <p class="italic text-gray-100">“Depuis que j’ai rejoint Getshemane, ma vie spirituelle a complètement changé. J’ai trouvé la paix.”</p>
-        <h4 class="mt-4 font-semibold text-red-300">— Sarah</h4>
+  <!-- INFO -->
+  <section id="info" class="py-16 px-6 text-center bg-black/40">
+    <h3 class="text-3xl font-bold text-white mb-4">Informations</h3>
+    <div class="max-w-4xl mx-auto grid md:grid-cols-3 gap-6 text-gray-100">
+      <div class="bg-white/10 p-6 rounded-lg shadow-md">
+        <h4 class="font-semibold text-red-400 text-lg mb-2">📍 Adresse</h4>
+        <p>25 Rue de la Foi<br>75000 Paris</p>
       </div>
-      <div class="bg-white/10 p-6 rounded-xl shadow-lg">
-        <p class="italic text-gray-100">“Les cultes sont puissants, la louange vivante et la communauté très accueillante.”</p>
-        <h4 class="mt-4 font-semibold text-red-300">— David</h4>
+      <div class="bg-white/10 p-6 rounded-lg shadow-md">
+        <h4 class="font-semibold text-red-400 text-lg mb-2">⏰ Horaires</h4>
+        <p>Dimanche : 10h30 - 12h30<br>Vendredi : 19h00 - 21h00</p>
       </div>
-      <div class="bg-white/10 p-6 rounded-xl shadow-lg">
-        <p class="italic text-gray-100">“Je sens la présence de Dieu à chaque rencontre. Getshemane est une bénédiction.”</p>
-        <h4 class="mt-4 font-semibold text-red-300">— Marie</h4>
+      <div class="bg-white/10 p-6 rounded-lg shadow-md">
+        <h4 class="font-semibold text-red-400 text-lg mb-2">🌐 Réseaux</h4>
+        <p>
+          <a href="#" class="hover:text-red-300">Facebook</a><br>
+          <a href="#" class="hover:text-red-300">Instagram</a><br>
+          <a href="#" class="hover:text-red-300">YouTube</a>
+        </p>
       </div>
-    </div>
-  </section>
-
-  <!-- AGENDA -->
-  <section id="agenda" class="py-16 px-6 text-center bg-black/30 backdrop-blur-md">
-    <h3 class="text-3xl font-bold text-white mb-6">Agenda</h3>
-    <p class="text-gray-200 mb-6">Voici notre calendrier des prochains cultes et événements :</p>
-    <div class="max-w-4xl mx-auto">
-      <!-- Intégration Google Agenda -->
-      <iframe src="https://calendar.google.com/calendar/embed?src=fr.french%23holiday%40group.v.calendar.google.com&ctz=Europe%2FParis"
-        style="border:0" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
     </div>
   </section>
 
@@ -133,32 +125,15 @@
   </section>
 
   <!-- FOOTER -->
-  <footer class="border-t border-white/20 bg-black/70">
-    <div class="max-w-6xl mx-auto px-6 py-10 grid md:grid-cols-3 gap-8 text-gray-200">
-      <div>
-        <h4 class="font-semibold text-lg text-red-400 mb-2">📍 Adresse</h4>
-        <p>25 Rue de la Foi<br>75000 Paris</p>
+  <footer class="border-t border-white/20 bg-black/60">
+    <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-sm text-gray-200">
+        © 2025 Église Getshemane — Tous droits réservés
+      </p>
+      <div class="flex items-center gap-4 text-gray-200">
+        <a href="#">Mentions légales</a>
+        <a href="#">Politique de confidentialité</a>
       </div>
-
-      <div>
-        <h4 class="font-semibold text-lg text-red-400 mb-2">🌐 Nous suivre</h4>
-        <ul>
-          <li><a href="#" class="hover:text-red-300">Facebook</a></li>
-          <li><a href="#" class="hover:text-red-300">Instagram</a></li>
-          <li><a href="#" class="hover:text-red-300">YouTube</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h4 class="font-semibold text-lg text-red-400 mb-2">🗺️ Localisation</h4>
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.999993492332!2d2.292292615674508!3d48.85837360893492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66fdebdf9aaab%3A0x73e8cde219d1c2d2!2sParis!5e0!3m2!1sfr!2sfr!4v1696500000000!5m2!1sfr!2sfr"
-          width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-      </div>
-    </div>
-
-    <div class="text-center py-4 text-sm text-gray-400 border-t border-white/10">
-      © 2025 Église Getshemane — Tous droits réservés
     </div>
   </footer>
 
