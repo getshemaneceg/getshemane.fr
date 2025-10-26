@@ -6,102 +6,57 @@
   <title>Église Getshemane</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Gradient doré pour fond */
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    .bg-animated {
-      background: linear-gradient(120deg, #FFD700, #FFB700, #FF8C00, #FFE066);
-      background-size: 300% 300%;
-      animation: gradientShift 12s ease infinite;
-    }
+    /* Animated gradient background (doré) */
+    @keyframes gradientShift { 0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;} }
+    .bg-animated { background: linear-gradient(120deg, #FFD700, #FFA500, #FFFACD, #FFDEAD); background-size: 300% 300%; animation: gradientShift 12s ease infinite; }
 
-    /* Particules flottantes */
-    @keyframes floatY {
-      0% { transform: translateY(0) scale(1); opacity: 0.9; }
-      50% { transform: translateY(-20px) scale(1.15); opacity: 0.5; }
-      100% { transform: translateY(0) scale(1); opacity: 0.9; }
-    }
-    .particle {
-      position: absolute;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.85);
-      filter: blur(6px);
-      animation: floatY 6s ease-in-out infinite;
-      pointer-events: none;
-    }
+    /* Loader animations */
+    @keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+    .animate-spin { animation: spin 2s linear infinite; }
+    .animate-spin-slow { animation: spin 8s linear infinite; }
 
-    /* Halo derrière éléments */
-    .halo {
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background: radial-gradient(ellipse at center, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 40%);
-      filter: blur(40px);
-      pointer-events: none;
-    }
+    /* Floating particles animation */
+    @keyframes floatY { 0%{transform:translateY(0) scale(1);opacity:0.9;}50%{transform:translateY(-20px) scale(1.15);opacity:0.5;}100%{transform:translateY(0) scale(1);opacity:0.9;} }
+    .particle { position:absolute;border-radius:999px;background:rgba(255,255,255,0.85);filter:blur(6px);animation:floatY 6s ease-in-out infinite;pointer-events:none; }
 
-    /* Revival canvas */
-    canvas#revivalCanvas {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-    }
+    /* Halo effect */
+    .halo { position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at center, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 40%);filter:blur(30px);transform:translateY(-10%);pointer-events:none; }
 
-    /* Fade-in */
-    .reveal { opacity: 0; transform: translateY(10px); transition: all 600ms ease; }
-    .reveal.show { opacity: 1; transform: translateY(0); }
+    /* Revival particles (canvas) */
+    canvas#revivalCanvas { position:absolute;inset:0;z-index:0;pointer-events:none; }
 
-    .glass { background: rgba(255,255,255,0.08); backdrop-filter: blur(6px); }
+    /* Reveal animation */
+    .reveal { opacity:0; transform:translateY(10px); transition:all 600ms ease; }
+    .reveal.show { opacity:1; transform:translateY(0); }
 
-    /* Écran de chargement */
-    #loader {
-      position: fixed;
-      inset: 0;
-      background: linear-gradient(135deg, #FFD700, #FFB700, #FF8C00, #FFE066);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      flex-direction: column;
-    }
-    #loader h1 {
-      font-size: 2rem;
-      font-weight: bold;
-      color: #fff;
-      text-shadow: 0 0 20px #fff, 0 0 40px #FFD700;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%,100% { text-shadow: 0 0 20px #fff, 0 0 40px #FFD700; }
-      50% { text-shadow: 0 0 40px #fff, 0 0 60px #FFB700; }
-    }
+    /* Glass effect */
+    .glass { background:rgba(255,255,255,0.08);backdrop-filter:blur(6px); }
 
-    /* Verset doré */
-    #verse {
-      font-weight: bold;
-      color: #FFD700;
-      text-shadow: 0 0 10px #fff, 0 0 20px #FFD700;
-    }
+    /* Loader overlay */
+    #loader { position:fixed; inset:0; background:#FFD700; display:flex; flex-direction:column; align-items:center; justify-content:center; z-index:50; }
+    #loader h1 { text-shadow:0 0 20px #fff,0 0 40px #FFD700; color:white; font-size:3rem; font-weight:800; text-align:center; }
+    #loader p { margin-top:1rem; color:#FFF8DC; font-weight:600; text-align:center; font-size:1.1rem; }
   </style>
 </head>
-<body class="min-h-screen text-gray-900 bg-gray-900">
+<body class="min-h-screen text-gray-900 bg-animated">
 
   <!-- Loader -->
   <div id="loader">
+    <div class="relative w-40 h-40 mb-6">
+      <div class="absolute inset-0 rounded-full border-4 border-yellow-200 opacity-30 animate-spin-slow"></div>
+      <div class="absolute inset-0 rounded-full border-8 border-yellow-300 opacity-50 animate-spin"></div>
+    </div>
     <h1>Église Getshemane</h1>
-    <p id="verse" class="mt-4 text-center max-w-md"></p>
+    <p id="verse">“Dieu est lumière et amour”</p>
   </div>
 
-  <!-- Global animated background -->
-  <div class="fixed inset-0 bg-animated mix-blend-overlay opacity-70 pointer-events-none"></div>
+  <!-- Revival canvas -->
   <canvas id="revivalCanvas"></canvas>
+
+  <!-- Floating particles -->
   <div id="particles" class="pointer-events-none fixed inset-0 z-0"></div>
 
-  <!-- NAV -->
+  <!-- Top nav -->
   <header class="fixed w-full z-40">
     <nav class="max-w-6xl mx-auto p-4 flex items-center justify-between">
       <div class="flex items-center gap-3">
@@ -111,6 +66,7 @@
           <p class="text-xs text-gray-700">Église Évangélique</p>
         </div>
       </div>
+
       <ul class="hidden md:flex items-center gap-6 text-sm">
         <li><a class="hover:underline" href="#home">Accueil</a></li>
         <li><a class="hover:underline" href="#about">À propos</a></li>
@@ -119,6 +75,7 @@
         <li><a class="hover:underline" href="#agenda">Agenda</a></li>
         <li><a class="hover:underline" href="#contact">Contact</a></li>
       </ul>
+
       <div class="flex items-center gap-3">
         <button id="musicBtn" class="px-3 py-2 rounded-full bg-white/10 hover:bg-white/20 text-sm">🔊 Musique</button>
         <a href="#donate" class="px-4 py-2 rounded-full bg-red-600 hover:bg-red-500 text-white text-sm font-semibold shadow">Faire un don</a>
@@ -126,15 +83,14 @@
     </nav>
   </header>
 
-  <!-- MAIN -->
   <main class="relative z-10 pt-28">
-    <!-- Hero -->
+    <!-- HERO -->
     <section id="home" class="relative overflow-hidden py-20">
       <div class="halo"></div>
       <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div class="space-y-6">
           <h2 class="text-4xl md:text-5xl font-extrabold leading-tight reveal">Bienvenue à <span class="text-yellow-400">Getshemane</span></h2>
-          <p class="text-lg text-gray-100/90 reveal">Un lieu de rencontre, de prière et de transformation — rejoins une communauté vivante où Dieu change des vies.</p>
+          <p class="text-lg reveal">Un lieu de rencontre, de prière et de transformation — rejoins une communauté vivante où Dieu change des vies.</p>
           <div class="flex gap-4 reveal">
             <a href="#events" class="px-5 py-3 rounded-lg bg-gradient-to-r from-yellow-400 to-orange-500 shadow-lg font-semibold">Horaires & Événements</a>
             <a href="#contact" class="px-5 py-3 rounded-lg border border-white/20 glass">Nous contacter</a>
@@ -148,11 +104,14 @@
         </div>
       </div>
     </section>
-    <!-- Sections about, events, testimonials, agenda, contact, donate ... conservent les mêmes styles que ta base -->
+
+    <!-- Sections About, Events, Testimonials, Agenda, Contact, Donate (gardés avec reveal, halo et particules) -->
+    <!-- ... (reste des sections inchangé pour le style doré et effets) ... -->
+
   </main>
 
   <footer class="mt-8 border-t border-white/10">
-    <div class="max-w-6xl mx-auto px-6 py-8 grid md:grid-cols-3 gap-6 text-gray-300">
+    <div class="max-w-6xl mx-auto px-6 py-8 grid md:grid-cols-3 gap-6 text-gray-700">
       <div>
         <h4 class="font-semibold text-yellow-400 mb-2">📍 Adresse</h4>
         <p>85 Avenue Gallieni, Pierrefitte-sur-Seine</p>
@@ -170,95 +129,26 @@
         <p>Dim: 15h–18h | Lun/Jeu: 19h30–21h</p>
       </div>
     </div>
-    <div class="text-center py-4 text-sm text-gray-400 border-t border-white/5">© 2025 Église Getshemane — Tous droits réservés — EdoJunior</div>
+    <div class="text-center py-4 text-sm text-gray-500 border-t border-white/10">© 2025 Église Getshemane — Tous droits réservés</div>
   </footer>
 
-  <!-- Scripts -->
+  <audio id="bgAudio" loop src="" preload="none"></audio>
+
   <script>
-    // Versets bibliques
-    const verses = [
-      "Jean 3:16 — Car Dieu a tant aimé le monde...",
-      "Psaume 23:1 — L'Éternel est mon berger, je ne manquerai de rien.",
-      "Philippiens 4:13 — Je puis tout par celui qui me fortifie.",
-      "Ésaïe 41:10 — Ne crains rien, car je suis avec toi."
-    ];
-    const verseEl = document.getElementById('verse');
-    verseEl.textContent = verses[Math.floor(Math.random() * verses.length)];
+    // Loader hide after window load
+    window.addEventListener('load', ()=>{ document.getElementById('loader').style.display='none'; });
 
-    // Loader hide after 5s
-    window.addEventListener('load', ()=>{
-      setTimeout(()=>{ document.getElementById('loader').style.display='none'; }, 5000);
-    });
-
-    // Particles
-    (function spawnParticles(){
-      const container = document.getElementById('particles');
-      if(!container) return;
-      for(let i=0;i<25;i++){
-        const el = document.createElement('div');
-        el.className = 'particle';
-        const size = Math.random()*10 + 6;
-        el.style.width = el.style.height = size + 'px';
-        el.style.left = Math.random()*100 + '%';
-        el.style.top = Math.random()*100 + '%';
-        el.style.opacity = (Math.random()*0.6 + 0.3).toString();
-        el.style.animationDuration = (6 + Math.random()*6) + 's';
-        container.appendChild(el);
-      }
-    })();
+    // Floating particles
+    (function(){ const container=document.getElementById('particles'); if(!container) return; for(let i=0;i<25;i++){ const el=document.createElement('div'); el.className='particle'; const size=Math.random()*10+6; el.style.width=size+'px'; el.style.height=size+'px'; el.style.left=(Math.random()*100)+'%'; el.style.top=(Math.random()*100)+'%'; el.style.opacity=(Math.random()*0.6+0.3).toString(); el.style.animationDuration=(6+Math.random()*6)+'s'; container.appendChild(el); }})();
 
     // Revival canvas
-    (function revivalCanvas(){
-      const c = document.getElementById('revivalCanvas'); if(!c) return;
-      const ctx = c.getContext('2d'); let parts = [];
-      function resize(){ c.width = window.innerWidth; c.height = window.innerHeight; }
-      function init(){
-        resize();
-        parts = Array.from({length:40}).map(()=>({
-          x: Math.random()*c.width,
-          y: Math.random()*c.height,
-          r: Math.random()*1.8+0.8,
-          vx:(Math.random()-0.5)*0.2,
-          vy:(Math.random()-0.5)*0.2,
-          alpha: Math.random()*0.7+0.15
-        }));
-      }
-      function draw(){
-        ctx.clearRect(0,0,c.width,c.height);
-        parts.forEach(p=>{
-          ctx.beginPath();
-          ctx.fillStyle='rgba(255,255,255,'+p.alpha+')';
-          ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-          ctx.fill();
-          p.x+=p.vx; p.y+=p.vy;
-          if(p.x<0)p.x=c.width;if(p.x>c.width)p.x=0;
-          if(p.y<0)p.y=c.height;if(p.y>c.height)p.y=0;
-        });
-        requestAnimationFrame(draw);
-      }
-      window.addEventListener('resize', init);
-      init(); draw();
-    })();
+    (function(){ const c=document.getElementById('revivalCanvas'); if(!c) return; const ctx=c.getContext('2d'); function resize(){ c.width=window.innerWidth;c.height=window.innerHeight;} let parts=[]; function init(){ resize(); parts=Array.from({length:40}).map(()=>({ x:Math.random()*c.width, y:Math.random()*c.height, r:Math.random()*1.8+0.8, vx:(Math.random()-0.5)*0.2, vy:(Math.random()-0.5)*0.2, alpha:Math.random()*0.7+0.15 }));} function draw(){ ctx.clearRect(0,0,c.width,c.height); parts.forEach(p=>{ ctx.beginPath(); ctx.fillStyle='rgba(255,255,255,'+p.alpha+')'; ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill(); p.x+=p.vx; p.y+=p.vy; if(p.x<0)p.x=c.width;if(p.x>c.width)p.x=0;if(p.y<0)p.y=c.height;if(p.y>c.height)p.y=0;}); requestAnimationFrame(draw);} window.addEventListener('resize', init); init(); draw(); })();
 
     // Reveal
-    (function revealOnScroll(){
-      const obs = new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('show'); });
-      }, {threshold:0.12});
-      document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-    })();
+    (function(){ const obs=new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting)e.target.classList.add('show'); }); },{threshold:0.12}); document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));})();
 
     // Music toggle
-    (function musicToggle(){
-      const btn = document.getElementById('musicBtn');
-      const audio = new Audio(""); // mettre URL musique
-      let playing=false;
-      btn.addEventListener('click',async ()=>{
-        if(!audio.src){ alert("Pas de musique configurée."); return; }
-        if(!playing){ await audio.play(); playing=true; btn.textContent='🔈 Musique (ON)'; }
-        else{ audio.pause(); playing=false; btn.textContent='🔊 Musique'; }
-      });
-    })();
+    (function(){ const btn=document.getElementById('musicBtn'); const audio=document.getElementById('bgAudio'); audio.src=""; let playing=false; btn.addEventListener('click',async ()=>{ if(!audio.src){alert('Aucun fichier audio configuré. Mets l\'URL du fichier dans bgAudio.src'); return;} try{ if(!playing){await audio.play(); playing=true; btn.textContent='🔈 Musique (ON)';}else{audio.pause(); playing=false; btn.textContent='🔊 Musique';} }catch(err){console.warn('Audio play blocked',err);} });})();
   </script>
 </body>
 </html>
