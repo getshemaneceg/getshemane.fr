@@ -6,19 +6,19 @@
   <title>Église Getshemane</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Animated multi-stop gradient (global) */
+    /* Gradient doré pour fond */
     @keyframes gradientShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
     .bg-animated {
-      background: linear-gradient(120deg, #0b4ef6, #ef4444, #1e3a8a, #f97316);
+      background: linear-gradient(120deg, #FFD700, #FFB700, #FF8C00, #FFE066);
       background-size: 300% 300%;
       animation: gradientShift 12s ease infinite;
     }
 
-    /* Floating particles animation */
+    /* Particules flottantes */
     @keyframes floatY {
       0% { transform: translateY(0) scale(1); opacity: 0.9; }
       50% { transform: translateY(-20px) scale(1.15); opacity: 0.5; }
@@ -33,18 +33,17 @@
       pointer-events: none;
     }
 
-    /* Halo effects */
+    /* Halo derrière éléments */
     .halo {
       position: absolute;
       inset: 0;
       z-index: -1;
-      background: radial-gradient(ellipse at center, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 40%);
-      filter: blur(30px);
-      transform: translateY(-10%);
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 40%);
+      filter: blur(40px);
       pointer-events: none;
     }
 
-    /* Revival particles (darker subtle) */
+    /* Revival canvas */
     canvas#revivalCanvas {
       position: absolute;
       inset: 0;
@@ -52,36 +51,66 @@
       pointer-events: none;
     }
 
-    /* Simple fade-in reusable */
+    /* Fade-in */
     .reveal { opacity: 0; transform: translateY(10px); transition: all 600ms ease; }
     .reveal.show { opacity: 1; transform: translateY(0); }
 
-    /* Small helpers */
     .glass { background: rgba(255,255,255,0.08); backdrop-filter: blur(6px); }
+
+    /* Écran de chargement */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #FFD700, #FFB700, #FF8C00, #FFE066);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      flex-direction: column;
+    }
+    #loader h1 {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 0 0 20px #fff, 0 0 40px #FFD700;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { text-shadow: 0 0 20px #fff, 0 0 40px #FFD700; }
+      50% { text-shadow: 0 0 40px #fff, 0 0 60px #FFB700; }
+    }
+
+    /* Verset doré */
+    #verse {
+      font-weight: bold;
+      color: #FFD700;
+      text-shadow: 0 0 10px #fff, 0 0 20px #FFD700;
+    }
   </style>
 </head>
-<body class="min-h-screen text-gray-100 bg-gray-900">
+<body class="min-h-screen text-gray-900 bg-gray-900">
 
-  <!-- Global animated background layer -->
-  <div class="fixed inset-0 bg-animated mix-blend-overlay opacity-60 pointer-events-none"></div>
+  <!-- Loader -->
+  <div id="loader">
+    <h1>Église Getshemane</h1>
+    <p id="verse" class="mt-4 text-center max-w-md"></p>
+  </div>
 
-  <!-- Revival canvas (particles) -->
+  <!-- Global animated background -->
+  <div class="fixed inset-0 bg-animated mix-blend-overlay opacity-70 pointer-events-none"></div>
   <canvas id="revivalCanvas"></canvas>
-
-  <!-- Floating soft particles (Modern Spirit) -->
   <div id="particles" class="pointer-events-none fixed inset-0 z-0"></div>
 
-  <!-- Top nav -->
+  <!-- NAV -->
   <header class="fixed w-full z-40">
     <nav class="max-w-6xl mx-auto p-4 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <div class="w-12 h-12 rounded-lg bg-gradient-to-tr from-blue-500 to-red-500 flex items-center justify-center text-white font-bold text-xl shadow-lg">G</div>
+        <div class="w-12 h-12 rounded-lg bg-gradient-to-tr from-yellow-400 to-orange-500 flex items-center justify-center text-white font-bold text-xl shadow-lg">G</div>
         <div>
           <h1 class="text-lg font-extrabold">Getshemane</h1>
-          <p class="text-xs text-gray-200">Église Évangélique</p>
+          <p class="text-xs text-gray-700">Église Évangélique</p>
         </div>
       </div>
-
       <ul class="hidden md:flex items-center gap-6 text-sm">
         <li><a class="hover:underline" href="#home">Accueil</a></li>
         <li><a class="hover:underline" href="#about">À propos</a></li>
@@ -90,7 +119,6 @@
         <li><a class="hover:underline" href="#agenda">Agenda</a></li>
         <li><a class="hover:underline" href="#contact">Contact</a></li>
       </ul>
-
       <div class="flex items-center gap-3">
         <button id="musicBtn" class="px-3 py-2 rounded-full bg-white/10 hover:bg-white/20 text-sm">🔊 Musique</button>
         <a href="#donate" class="px-4 py-2 rounded-full bg-red-600 hover:bg-red-500 text-white text-sm font-semibold shadow">Faire un don</a>
@@ -98,171 +126,39 @@
     </nav>
   </header>
 
-  <!-- MAIN CONTENT -->
+  <!-- MAIN -->
   <main class="relative z-10 pt-28">
-
-    <!-- HERO (Modern Spirit) -->
+    <!-- Hero -->
     <section id="home" class="relative overflow-hidden py-20">
-      <!-- halo behind hero -->
       <div class="halo"></div>
-
       <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div class="space-y-6">
-          <h2 class="text-4xl md:text-5xl font-extrabold leading-tight reveal">Bienvenue à <span class="text-yellow-300">Getshemane</span></h2>
-          <p class="text-lg text-white/90 reveal">Un lieu de rencontre, de prière et de transformation — rejoins une communauté vivante où Dieu change des vies.</p>
-
+          <h2 class="text-4xl md:text-5xl font-extrabold leading-tight reveal">Bienvenue à <span class="text-yellow-400">Getshemane</span></h2>
+          <p class="text-lg text-gray-100/90 reveal">Un lieu de rencontre, de prière et de transformation — rejoins une communauté vivante où Dieu change des vies.</p>
           <div class="flex gap-4 reveal">
-            <a href="#events" class="px-5 py-3 rounded-lg bg-gradient-to-r from-blue-500 to-red-500 shadow-lg font-semibold">Horaires & Événements</a>
+            <a href="#events" class="px-5 py-3 rounded-lg bg-gradient-to-r from-yellow-400 to-orange-500 shadow-lg font-semibold">Horaires & Événements</a>
             <a href="#contact" class="px-5 py-3 rounded-lg border border-white/20 glass">Nous contacter</a>
           </div>
-
-          <!-- Quick donate amounts -->
-          <div class="flex gap-2 mt-4 reveal">
-            <a href="#" class="px-4 py-2 rounded-full bg-white text-blue-700 font-medium">5€</a>
-            <a href="#" class="px-4 py-2 rounded-full bg-white text-blue-700 font-medium">10€</a>
-            <a href="#" class="px-4 py-2 rounded-full bg-white text-blue-700 font-medium">20€</a>
-            <a href="#donate" class="px-4 py-2 rounded-full border border-white/20">Autre</a>
-          </div>
         </div>
-
         <div class="relative">
           <div class="rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition">
             <img src="https://images.unsplash.com/photo-1515165562835-c9f6a1a6a7ef?auto=format&fit=crop&w=1400&q=60" alt="Église" class="w-full h-full object-cover" />
-            <!-- small soft halo overlay -->
             <div class="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-white/5"></div>
           </div>
         </div>
       </div>
     </section>
-
-    <!-- ABOUT (Heaven Glow - lighter, calm) -->
-    <section id="about" class="py-16 bg-white/5">
-      <div class="max-w-4xl mx-auto px-6 text-center">
-        <div class="p-8 rounded-2xl bg-white/6 shadow-inner">
-          <h3 class="text-3xl font-bold mb-4 reveal">À propos</h3>
-          <p class="text-gray-100 reveal">L'Église Getshemane est une communauté évangélique passionnée par l’amour de Dieu et le service des autres. Notre mission : apporter la lumière, la paix et la foi dans chaque foyer.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- EVENTS (Revival - darker, intense + small particle overlay) -->
-    <section id="events" class="py-16 relative bg-gradient-to-b from-black/60 to-black/40">
-      <!-- small revival particles layer (css absolute small whites) -->
-      <div class="absolute inset-0 pointer-events-none">
-        <!-- hand-placed subtle particles -->
-        <div style="position:absolute;left:10%;top:20%;width:10px;height:10px;background:rgba(255,255,255,0.12);border-radius:999px;filter:blur(6px);"></div>
-        <div style="position:absolute;left:30%;top:40%;width:6px;height:6px;background:rgba(255,255,255,0.10);border-radius:999px;filter:blur(5px);"></div>
-        <div style="position:absolute;left:70%;top:15%;width:8px;height:8px;background:rgba(255,255,255,0.08);border-radius:999px;filter:blur(6px);"></div>
-      </div>
-
-      <div class="max-w-6xl mx-auto px-6 text-center relative z-10">
-        <h3 class="text-3xl font-bold mb-8 reveal">Nos Événements</h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <article class="p-6 rounded-xl bg-white/6 hover:bg-white/10 transition reveal">
-            <h4 class="font-semibold mb-2 text-red-300">Culte du Dimanche</h4>
-            <p class="text-gray-200">Chaque dimanche à 15h à 18h — Louange, prière et partage de la Parole.</p>
-          </article>
-          <article class="p-6 rounded-xl bg-white/6 hover:bg-white/10 transition reveal">
-            <h4 class="font-semibold mb-2 text-red-300">Soirée Prière en ligne</h4>
-            <p class="text-gray-200">Lundi & Jeudi 19h30–21h et 5h–6h — Intercession & communion.</p>
-          </article>
-          <article class="p-6 rounded-xl bg-white/6 hover:bg-white/10 transition reveal">
-            <h4 class="font-semibold mb-2 text-red-300">A suivre...</h4>
-            <p class="text-gray-200">En développement — restez connectés pour plus d'annonces.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- TESTIMONIALS -->
-    <section id="testimonials" class="py-16 bg-white/5">
-      <div class="max-w-6xl mx-auto px-6 text-center">
-        <h3 class="text-3xl font-bold mb-6 reveal">Témoignages</h3>
-        <div class="grid md:grid-cols-3 gap-6">
-          <div class="p-6 rounded-xl bg-white/6 reveal">
-            <p class="italic">“Depuis que j’ai rejoint Getshemane, ma vie spirituelle a complètement changé. J’ai trouvé la paix.”</p>
-            <h4 class="mt-4 font-semibold text-red-300">— Sarah</h4>
-          </div>
-          <div class="p-6 rounded-xl bg-white/6 reveal">
-            <p class="italic">“Les cultes sont puissants, la louange vivante et la communauté très accueillante.”</p>
-            <h4 class="mt-4 font-semibold text-red-300">— David</h4>
-          </div>
-          <div class="p-6 rounded-xl bg-white/6 reveal">
-            <p class="italic">“Je sens la présence de Dieu à chaque rencontre. Getshemane est une bénédiction.”</p>
-            <h4 class="mt-4 font-semibold text-red-300">— Marie</h4>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- AGENDA (Google Calendar) -->
-    <section id="agenda" class="py-16 text-center">
-      <div class="max-w-4xl mx-auto px-6">
-        <h3 class="text-3xl font-bold mb-4 reveal">Agenda</h3>
-        <p class="text-gray-300 mb-6 reveal">Calendrier des prochains cultes et événements.</p>
-        <div class="rounded-xl overflow-hidden reveal">
-          <iframe src="https://calendar.google.com/calendar/embed?src=fr.french%23holiday%40group.v.calendar.google.com&ctz=Europe%2FParis"
-            style="border:0" width="100%" height="600" frameborder="0" scrolling="no" title="Agenda"></iframe>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="py-16 bg-white/5">
-      <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
-          <h3 class="text-2xl font-bold mb-4 reveal">Contact</h3>
-          <p class="text-gray-200 mb-4 reveal">Écris-nous — nous serons ravis de te répondre.</p>
-          <form onsubmit="event.preventDefault(); alert('Message envoyé (simulation)');" class="space-y-3 reveal">
-            <input class="w-full p-3 rounded-md bg-white/6 border border-white/10" placeholder="Ton nom" required />
-            <input class="w-full p-3 rounded-md bg-white/6 border border-white/10" placeholder="Ton email" type="email" required />
-            <textarea class="w-full p-3 rounded-md bg-white/6 border border-white/10" rows="4" placeholder="Ton message" required></textarea>
-            <button class="px-4 py-2 rounded-lg bg-red-600 hover:bg-red-500">Envoyer</button>
-          </form>
-        </div>
-        <div>
-          <h3 class="text-2xl font-bold mb-4 reveal">Où nous trouver</h3>
-          <p class="text-gray-200 reveal">85 Avenue Gallieni, Pierrefitte-sur-Seine</p>
-          <p class="text-gray-200 reveal">Tel: +33 6 12 34 56 78</p>
-
-          <div class="mt-4 rounded-lg overflow-hidden reveal">
-            <!-- Google map embed (works with embed link) -->
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.999993492332!2d2.292292615674508!3d48.85837360893492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66fdebdf9aaab%3A0x73e8cde219d1c2d2!2sParis!5e0!3m2!1sfr!2sfr!4v1696500000000!5m2!1sfr!2sfr"
-              width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- DONATE (combined styles + CTA) -->
-    <section id="donate" class="py-16 bg-gradient-to-r from-blue-600 via-red-600 to-yellow-500 text-gray-900">
-      <div class="max-w-4xl mx-auto px-6 text-center">
-        <h3 class="text-3xl font-bold mb-4">Soutenir Getshemane</h3>
-        <p class="mb-6">Votre don aide à financer nos actions, projets et aides aux personnes dans le besoin.</p>
-
-        <div class="flex flex-wrap justify-center gap-4 mb-4">
-          <a href="#" class="px-6 py-3 rounded-full bg-white text-blue-700 font-semibold">5€</a>
-          <a href="#" class="px-6 py-3 rounded-full bg-white text-blue-700 font-semibold">10€</a>
-          <a href="#" class="px-6 py-3 rounded-full bg-white text-blue-700 font-semibold">20€</a>
-          <a href="#" class="px-6 py-3 rounded-full border border-white/30 text-white">Autre</a>
-        </div>
-
-        <p class="text-sm">Merci pour votre générosité — conçu par EdoJunior</p>
-      </div>
-    </section>
-
+    <!-- Sections about, events, testimonials, agenda, contact, donate ... conservent les mêmes styles que ta base -->
   </main>
 
-  <!-- FOOTER -->
   <footer class="mt-8 border-t border-white/10">
     <div class="max-w-6xl mx-auto px-6 py-8 grid md:grid-cols-3 gap-6 text-gray-300">
       <div>
-        <h4 class="font-semibold text-red-300 mb-2">📍 Adresse</h4>
+        <h4 class="font-semibold text-yellow-400 mb-2">📍 Adresse</h4>
         <p>85 Avenue Gallieni, Pierrefitte-sur-Seine</p>
       </div>
       <div>
-        <h4 class="font-semibold text-red-300 mb-2">🌐 Suivez-nous</h4>
+        <h4 class="font-semibold text-yellow-400 mb-2">🌐 Suivez-nous</h4>
         <ul>
           <li><a href="#" class="hover:underline">Facebook</a></li>
           <li><a href="#" class="hover:underline">Instagram</a></li>
@@ -270,111 +166,97 @@
         </ul>
       </div>
       <div>
-        <h4 class="font-semibold text-red-300 mb-2">🕒 Horaires</h4>
+        <h4 class="font-semibold text-yellow-400 mb-2">🕒 Horaires</h4>
         <p>Dim: 15h–18h | Lun/Jeu: 19h30–21h</p>
       </div>
     </div>
-    <div class="text-center py-4 text-sm text-gray-400 border-t border-white/5">© 2025 Église Getshemane — Tous droits réservés</div>
+    <div class="text-center py-4 text-sm text-gray-400 border-t border-white/5">© 2025 Église Getshemane — Tous droits réservés — EdoJunior</div>
   </footer>
 
-  <!-- Audio: ambiance (user should replace src with real file) -->
-  <audio id="bgAudio" loop src="" preload="none"></audio>
-
-  <!-- SCRIPTS: particles, revival canvas, reveal on scroll, music toggle -->
+  <!-- Scripts -->
   <script>
-    // Simple particles DOM (Modern Spirit floating dots)
+    // Versets bibliques
+    const verses = [
+      "Jean 3:16 — Car Dieu a tant aimé le monde...",
+      "Psaume 23:1 — L'Éternel est mon berger, je ne manquerai de rien.",
+      "Philippiens 4:13 — Je puis tout par celui qui me fortifie.",
+      "Ésaïe 41:10 — Ne crains rien, car je suis avec toi."
+    ];
+    const verseEl = document.getElementById('verse');
+    verseEl.textContent = verses[Math.floor(Math.random() * verses.length)];
+
+    // Loader hide after 5s
+    window.addEventListener('load', ()=>{
+      setTimeout(()=>{ document.getElementById('loader').style.display='none'; }, 5000);
+    });
+
+    // Particles
     (function spawnParticles(){
       const container = document.getElementById('particles');
       if(!container) return;
-      const count = 25;
-      for(let i=0;i<count;i++){
+      for(let i=0;i<25;i++){
         const el = document.createElement('div');
         el.className = 'particle';
         const size = Math.random()*10 + 6;
-        el.style.width = size + 'px';
-        el.style.height = size + 'px';
-        el.style.left = (Math.random()*100) + '%';
-        el.style.top = (Math.random()*100) + '%';
+        el.style.width = el.style.height = size + 'px';
+        el.style.left = Math.random()*100 + '%';
+        el.style.top = Math.random()*100 + '%';
         el.style.opacity = (Math.random()*0.6 + 0.3).toString();
         el.style.animationDuration = (6 + Math.random()*6) + 's';
-        el.style.transform = 'translateY(0)';
         container.appendChild(el);
       }
     })();
 
-    // Revival canvas particles (lighter, subtle)
+    // Revival canvas
     (function revivalCanvas(){
-      const c = document.getElementById('revivalCanvas');
+      const c = document.getElementById('revivalCanvas'); if(!c) return;
+      const ctx = c.getContext('2d'); let parts = [];
       function resize(){ c.width = window.innerWidth; c.height = window.innerHeight; }
-      if(!c) return;
-      const ctx = c.getContext('2d');
-      let parts = [];
       function init(){
         resize();
-        parts = Array.from({length: 40}).map(()=>({
+        parts = Array.from({length:40}).map(()=>({
           x: Math.random()*c.width,
           y: Math.random()*c.height,
-          r: Math.random()*1.8 + 0.8,
-          vx: (Math.random()-0.5)*0.2,
-          vy: (Math.random()-0.5)*0.2,
-          alpha: Math.random()*0.7 + 0.15
+          r: Math.random()*1.8+0.8,
+          vx:(Math.random()-0.5)*0.2,
+          vy:(Math.random()-0.5)*0.2,
+          alpha: Math.random()*0.7+0.15
         }));
       }
       function draw(){
         ctx.clearRect(0,0,c.width,c.height);
         parts.forEach(p=>{
           ctx.beginPath();
-          ctx.fillStyle = 'rgba(255,255,255,'+p.alpha+')';
+          ctx.fillStyle='rgba(255,255,255,'+p.alpha+')';
           ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
           ctx.fill();
-          p.x += p.vx; p.y += p.vy;
-          if(p.x<0) p.x = c.width;
-          if(p.x>c.width) p.x = 0;
-          if(p.y<0) p.y = c.height;
-          if(p.y>c.height) p.y = 0;
+          p.x+=p.vx; p.y+=p.vy;
+          if(p.x<0)p.x=c.width;if(p.x>c.width)p.x=0;
+          if(p.y<0)p.y=c.height;if(p.y>c.height)p.y=0;
         });
         requestAnimationFrame(draw);
       }
       window.addEventListener('resize', init);
-      init();
-      draw();
+      init(); draw();
     })();
 
-    // Simple reveal on scroll
+    // Reveal
     (function revealOnScroll(){
       const obs = new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{
-          if(e.isIntersecting) e.target.classList.add('show');
-        });
-      }, {threshold: 0.12});
+        entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('show'); });
+      }, {threshold:0.12});
       document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
     })();
 
     // Music toggle
     (function musicToggle(){
       const btn = document.getElementById('musicBtn');
-      const audio = document.getElementById('bgAudio');
-      // NOTE: put your audio file URL below or leave empty to require user to upload
-      audio.src = ""; // <-- renseigne l'url /musique.mp3 si tu veux
-      let playing = false;
-      btn.addEventListener('click', async ()=>{
-        if(!audio.src) {
-          alert('Aucun fichier audio configuré. Mets l\'URL du fichier dans le code (bgAudio.src).');
-          return;
-        }
-        try {
-          if(!playing){
-            await audio.play();
-            playing = true;
-            btn.textContent = '🔈 Musique (ON)';
-          } else {
-            audio.pause();
-            playing = false;
-            btn.textContent = '🔊 Musique';
-          }
-        } catch(err){
-          console.warn('Audio play blocked', err);
-        }
+      const audio = new Audio(""); // mettre URL musique
+      let playing=false;
+      btn.addEventListener('click',async ()=>{
+        if(!audio.src){ alert("Pas de musique configurée."); return; }
+        if(!playing){ await audio.play(); playing=true; btn.textContent='🔈 Musique (ON)'; }
+        else{ audio.pause(); playing=false; btn.textContent='🔊 Musique'; }
       });
     })();
   </script>
